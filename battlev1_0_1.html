@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+      #cardlayout1 {
+        position: relative  ;
+        float: left;
+        width: 200px;
+        height: auto;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      }
+  
+  #cardlayout2 {
+        position: relative  ;
+        float: right;
+        width: 200px;
+        height: auto;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      }
+  
+  #scorecard {
+    position: absolute;
+    margin: -100px 0 0 -200px;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: auto;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      
+}
+
+
+      #cardlayout1 p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+      }
+  
+  #cardlayout2 p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+</style>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+//P1 
+$(document ).ready(function(){
+  $('#p1health').html(Math.round(p2health));
+  $('#p1def').html(Math.round(p2def));
+  $('#p1mit').html(Math.round(p2mit));
+  $('#p2health').html(Math.round(p2health));
+  $('#p2def').html(Math.round(p2def));
+  $('#p2mit').html(Math.round(p2mit));
+  $('#p1dmg').html(Math.round(p1dmg));
+  $('#p2dmg').html(Math.round(p2dmg));
+});
+//stats
+//p1
+var p1health = 500,
+    p1def = 1,
+    p1defplus = 20,
+    p1mit = Math.log(p1def) / Math.log(1.1);
+    p1dmg = null
+
+//p2
+var p2health = 500,
+    p2def = 1,
+    p2defplus = 20,
+    p2mit = Math.log(p1def) / Math.log(1.1);
+    p2dmg = null
+
+//attacks
+    
+    
+p1attackclick = function foo (power){ 
+  var dmg = power * (1 - (p2mit/100));
+  console.log(dmg);
+  p2health =  p2health - dmg ;
+  p1dmg = dmg
+  console.log(Math.round(p1dmg))
+  $('#p1dmg').html(Math.round(p1dmg));
+  
+
+
+ if (p2health < 0){
+  p2health = "Stunned";
+ }
+  console.log(Math.round(p2health));
+  $('#p2health').html(Math.round(p2health));
+};
+  
+  p2attackclick = function foo (power){ 
+  var dmg = power * (1 - (p1mit/100));
+  console.log(dmg);
+  p1health =  p1health - dmg
+  p2dmg = dmg
+  console.log(Math.round(p2dmg));
+  $('#p2dmg').html(Math.round(p2dmg));
+
+
+ if (p1health < 0){
+  p1health = "Stunned";
+ }
+  console.log(Math.round(p1health));
+  $('#p1health').html(Math.round(p1health));
+};
+
+p1defenseclick = function foo (power){
+  p1def = p1def + p1defplus;
+  p1mit = Math.log(p1def) / Math.log(1.1);
+  console.log(Math.round(p1def));
+  console.log(p1mit);
+  $ ('#p1def').html(Math.round(p1def));
+  $ ('#p1mit').html(Math.round(p1mit));
+};
+  p2defenseclick = function foo (power){
+  p2def = p2def + p2defplus;
+  p2mit = Math.log(p2def) / Math.log(1.1);
+  console.log(Math.round(p2def));
+  console.log(p2mit);
+  $ ('#p2def').html(Math.round(p2def));
+  $ ('#p2mit').html(Math.round(p2mit));
+};
+
+
+
+</script>
+
+<!-- player 1 --> 
+    <div id="cardlayout1" class="box">
+
+    	<p >Health: <span id="p1health"></span> </p>
+      <p >Def: <span id="p1def"></span> </p>
+      <p >Mit: <span id="p1mit"></span> </p>
+      
+
+    	//small image jpeg
+
+      <p><button onclick='p1attackclick(70)'>attack 1</button></p>
+
+     <p><button onclick='p1attackclick(60); console.log("p1attack")'>attack 2</button></p>
+
+     <p><button onclick='p1defenseclick(4); console.log("p1def")'>defence</button> + 20</p>
+            
+   </div>
+  
+  <!-- player 2 --> 
+    <div id="cardlayout2" class="box">
+
+    	<p >Health: <span id="p2health"></span> </p>
+      <p >Def: <span id="p2def"></span> </p>
+      <p >Mit: <span id="p2mit"></span> </p>
+      
+
+    	//small image jpeg
+
+      <p><button onclick='p2attackclick(70)'>attack 1</button></p>
+
+     <p><button onclick='p2attackclick(60); console.log("p1attack")'>attack 2</button></p>
+
+     <p><button onclick='p2defenseclick(4); console.log("p1def")'>defence</button> + 20</p>
+            
+   </div>
+  
+  <div id="scorecard" class="box">
+
+    	<p >Player 1 Attack: <span id="p1dmg"></span> </p>
+      <p >Player 2 Attack: <span id="p2dmg"></span> </p>
+      
+      
+            
+   </div>
+
+
+</body>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+      #cardlayout1 {
+        position: fixed  ;
+            left:10px;
+            top:10px;
+        width: 200px;
+        height: auto;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      }
+
+
+      #cardlayout1 p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+      #cardlayout2 {
+        position: fixed  ;
+            left:240px;
+            top:10px;
+        width: 200px;
+        height: auto;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      }
+
+
+      #cardlayout2 p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+      }
+</style>
+<head>
+</head>
+<body>
+
+<script type="text/javascript">
+
+//P1 
+
+//stats
+//p1
+var p1health = 500
+
+var p1defense = 50
+//p2
+
+var p2health = 500
+
+var p2defense = 50
+
+
+
+
+//attacks
+var p1attack1 = function foo (p){
+	var attackValue = p - p2defense;
+	p2health = p2health - attackValue
+	return p2health
+
+};
+
+var p1attack2 = function foo(p){
+	p - p2defense = var attackValue;
+	attackValue - p2health = p2health
+
+};
+
+var p1defense = function foo (p){
+	p+p1defense = p1defense
+};
+
+
+
+
+//attacks
+var p2attack1 = function foo(p){
+	p - p2defense = var attackValue;
+	p2health - attackValue = p1health
+
+};
+
+var p2attack2 = function foo(p){
+	p - p2defense = var attackValue;
+	p1health - attackValue = p1health
+
+};
+
+var p2defense = function foo(p){
+	p+p1defense = p1defense
+}
+
+
+</script>
+
+<!-- player 1 --> 
+    <div id="cardlayout1" class="box">
+
+    	<p>Health  <script>p1health.innerHTML</script> </p>
+
+    	//small image jpeg
+
+      <p><button onclick='p1attack1(70); console.log("p1attack")'>attack 1</button></p>
+
+     <p><button onclick='p1attack2(60); console.log("p1attack")'>attack 2</button></p>
+
+     <p><button onclick='defense(20); console.log("p1defence")'>defence</button></p>
+            
+   </div>
+<!-- player 2 --> 
+    <div id="cardlayout2" class="box">
+
+	//small image jpeg
+
+      <p><button onclick='p2attack1(80); console.log("p2attack")'>attack 1</button></p>
+
+     <p><button onclick='p2attack2(60); console.log("p2attack")'>attack 2</button></p>
+
+     <p><button onclick='defense(20); console.log("p2defence")'>defence</button></p>
+
+ 
+    </div>
+
+
+
+
+
+</body>

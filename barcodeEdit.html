@@ -36,19 +36,31 @@
 //P1 
 $ (document ).ready(function(){
   $ ('#p1health').html(p1health)
-})
+});
+
+//values
+var attackarr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+
+
 
 // barcode
 var barcode = '8712566159345';
 var n = barcode.split('').map(Number);
+var form = Math.round(((n[2]+3+n[6]+9+n[7]+5)/(n[0]+50))*81);
+console.log('form: '+ form);
+
+// attack value
 
 
-console.log(n);
+
+
 //stats
 //p1
-var p1health = 500
+var p1health = 500;
 
-var p1defense = Math.round(((n[2]+3+n[6]+9+n[7]+5)/(n[0]+50))*81);
+// attack value
+var p1defense = attackarr[form];
+
 console.log(p1defense);
 
 
@@ -56,7 +68,7 @@ console.log(p1defense);
 //attacks
 p1attackclick = function foo (power){ 
   //var dmg = power - 
-  p1health =  p1health - (power - p1defense) ;
+  p1health =  p1health - (power + p1defense) ;
  
 
 
@@ -83,9 +95,9 @@ p1defenseclick = function foo (power){
 
       //small image jpeg
 
-      <p><button onclick='p1attackclick(70)'>attack 1</button></p>
+      <p><button onclick='p1attackclick(0)'>attack 1</button></p>
 
-     <p><button onclick='p1attackclick(60); console.log("p1attack")'>attack 2</button></p>
+     <p><button onclick='p1attackclick(20); console.log("p1attack")'>attack 2</button></p>
 
      <p><button onclick='p1defenseclick(4); console.log("p1defence")'>defence</button></p>
             

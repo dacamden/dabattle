@@ -56,92 +56,71 @@
 
 <script type="text/javascript">
 
-//P1 
-$ (document ).ready(function(){
-  // $ ('#p1monster_id').html(p1monster_id)
-  $ ('#p1health').html(p1health)
-  $ ('#p1attack1').html(p1attack1)
-  $ ('#p1attack2').html(p1attack2)
-  $ ('#p1defense').html(p1defense)
-  $ ('#p1defense').html(p1defense)
-  $ ('#p1image').html("<img src=" + p1image +">")
-
-});
-
-
-
+    //P1 
+    $(document).ready(function() {
+        // $ ('#p1monster_id').html(p1monster_id)
+        $('#p1health').html(p1health);
+        $('#p1attack1').html(p1attack1);
+        $('#p1attack2').html(p1attack2);
+        $('#p1defense').html(p1defense);
+        $('#p1defense').html(p1defense);
+        $('#p1image').html("<img src=" + p1image + " height=" + 200 +
+            " width=" + 200 + ">");
+    });
 //values
-var attackarr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-
-var defarr = [1,2,3,4,5];
-
-var imagearr = ["http://cdn.bulbagarden.net/upload/b/b8/059Arcanine.png","http://cdn.bulbagarden.net/upload/c/cd/024Arbok.png","http://cdn.bulbagarden.net/upload/c/cc/147Dratini.png","http://cdn.bulbagarden.net/upload/archive/f/f8/20100417191927%21187Hoppip.png","http://cdn.bulbagarden.net/upload/archive/5/5d/20130914032735%21010Caterpie.png"]
-
-var healtharr = [100,120,130,140,150,160,170,180,190,200,221,220,230,240,250,260,270,280,290,300];
-
-
-
+var attackarr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,19, 20
+];
+var attackarr2 = [6, 7, 8, 9, 10, 11];
+var defarr = [1, 2, 3, 4, 5];
+var imagearr = ["http://cdn.bulbagarden.net/upload/b/b8/059Arcanine.png",
+    "http://cdn.bulbagarden.net/upload/c/cd/024Arbok.png",
+    "http://cdn.bulbagarden.net/upload/c/cc/147Dratini.png",
+    "http://cdn.bulbagarden.net/upload/archive/f/f8/20100417191927%21187Hoppip.png",
+    "http://cdn.bulbagarden.net/upload/archive/5/5d/20130914032735%21010Caterpie.png"
+];
+var healtharr = [100, 120, 130, 140, 150, 160, 170, 180, 190, 200, 221, 220, 230, 240, 250, 260, 270, 280, 290, 300
+];
 // barcode gen
-var numgen = Math.floor ((function getRandomArbitrary() {
-  return Math.random() * (9999999999999 - 1111111111111) + 1;
-    })())
+var numgen = Math.floor((function getRandomArbitrary() {
+    return Math.random() * (9999999999999 - 1111111111111) + 1;
+})());
 
-//b
-
-
-//var barcode = "1234567891234"
-var barcode = numgen.toString();
-console.log(barcode)
-var n = barcode.split('').map(Number);
-console.log(n)
-var form = Math.round(((n[2]+3+n[6]+9+n[7]+5)/(n[0]+50))*81);
-console.log('form: '+ form);
-
-
-
-
-//stats
-//p1
-//var p1health = 500;
-var p1attack1 = attackarr[form%20];
-var p1attack2 = attackarr[form%20];
-
-// attack value
-var p1defense = defarr[form%5];
-var p1health = healtharr[form%20];
-var p1image = imagearr[form%6];
-
-console.log(p1defense);
+    var barcode = numgen.toString();
+    console.log(numgen);
+    var n = barcode.split('').map(Number);
+    console.log(n);
+    var form = Math.round(((n[2] + 3 + n[6] + 9 + n[7] + 5) / (n[0] + 50)) * 81);
+    console.log('form: ' + form);
+    //stats
+    //p1
+    var p1attack1 = attackarr[form % 20];
+    var p1attack2 = attackarr2[form % 5];
+    // attack value
+    var p1defense = defarr[form % 5];
+    var p1health = healtharr[form % 20];
+    var p1image = imagearr[form % 5];
 
 
 
 //attacks
-p1attackclick = function foo (power){ 
-  //var dmg = power - 
-  p1health =  p1health - (power + p1defense) ;
- 
-
-
- if (p1health < 0){
-  p1health = "Stunned"
- }
-  console.log(p1health)
-  $ ('#p1health').html(p1health)
+p1attackclick = function foo(power) {
+    //var dmg = power - 
+    p1health = p1health - (power + p1defense);
+    if (p1health < 0) {
+        p1health = "Stunned"
+    }
+    console.log(p1health);
+    $('#p1health').html(p1health);
 };
-
-p1defenseclick = function foo (power){
-  p1defense = p1defense + power
-  console.log(p1defense)
-  $ ('#p1defense').html(p1defense)
-};
-
-
-
+p1defenseclick = function foo(power) {
+    p1defense = p1defense + power
+    console.log(p1defense);
+    $('#p1defense').html(p1defense);}
 </script>
 
 <!-- player 1 --> 
 <div id="cardlayout2" class="box">
-<p><button onclick='genNewMonster'>new scan</button></p>
+<p><button onclick='numgen();'>new scan</button></p>
 
 <p >Health: <span id="p1health"></span> </p>
 <p >attack1: <span id="p1attack1"></span> </p>

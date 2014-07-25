@@ -76,20 +76,26 @@ var imagearr = ["http://cdn.bulbagarden.net/upload/b/b8/059Arcanine.png",
     "http://cdn.bulbagarden.net/upload/c/cd/024Arbok.png",
     "http://cdn.bulbagarden.net/upload/c/cc/147Dratini.png",
     "http://cdn.bulbagarden.net/upload/archive/f/f8/20100417191927%21187Hoppip.png",
-    "http://cdn.bulbagarden.net/upload/archive/5/5d/20130914032735%21010Caterpie.png"
+    "http://cdn.bulbagarden.net/upload/archive/5/5d/20130914032735%21010Caterpie.png","http://blog.dacamden.co.uk/images/leo.JPG"
 ];
 var healtharr = [100, 120, 130, 140, 150, 160, 170, 180, 190, 200, 221, 220, 230, 240, 250, 260, 270, 280, 290, 300
 ];
 // barcode gen
-var numgen = Math.floor((function getRandomArbitrary() {
+var barcode = Math.floor((function getRandomArbitrary() {
     return Math.random() * (9999999999999 - 1111111111111) + 1;
 })());
+var formmaker = function(code){
 
-    var barcode = numgen.toString();
-    console.log(numgen);
-    var n = barcode.split('').map(Number);
+
+    var barcodex = code.toString();
+    console.log(barcode);
+    var n = barcodex.split('').map(Number);
     console.log(n);
-    var form = Math.round(((n[2] + 3 + n[6] + 9 + n[7] + 5) / (n[0] + 50)) * 81);
+    return Math.round(((n[2] + 3 + n[6] + 9 + n[7] + 5) / (n[0] + 50)) * 81);
+  }
+
+var form = formmaker(barcode);
+
     console.log('form: ' + form);
     //stats
     //p1
@@ -98,7 +104,7 @@ var numgen = Math.floor((function getRandomArbitrary() {
     // attack value
     var p1defense = defarr[form % 5];
     var p1health = healtharr[form % 20];
-    var p1image = imagearr[form % 5];
+    var p1image = imagearr[form % 6];
 
 
 

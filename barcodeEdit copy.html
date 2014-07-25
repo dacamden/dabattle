@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+      #cardlayout1 {
+        position: fixed  ;
+            left:10px;
+            top:10px;
+        width: 200px;
+        height: auto;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      }
+
+
+      #cardlayout1 p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+      }
+      #cardlayout2 {
+        position: fixed  ;
+            left:400px;
+            top:10px;
+        width: 200px;
+        height: auto;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+      }
+
+
+      #cardlayout2 p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+</style>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+
+//P1 
+$ (document ).ready(function(){
+  // $ ('#p1monster_id').html(p1monster_id)
+  $ ('#p1health').html(p1health)
+  $ ('#p1attack1').html(p1attack1)
+  $ ('#p1attack2').html(p1attack2)
+  $ ('#p1defense').html(p1defense)
+  $ ('#p1defense').html(p1defense)
+  $ ('#p1image').html("<img src=" + p1image +">")
+
+});
+
+
+
+//values
+var attackarr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+
+var defarr = [1,2,3,4,5];
+
+var imagearr = ["http://cdn.bulbagarden.net/upload/b/b8/059Arcanine.png","http://cdn.bulbagarden.net/upload/c/cd/024Arbok.png","http://cdn.bulbagarden.net/upload/c/cc/147Dratini.png","http://cdn.bulbagarden.net/upload/archive/f/f8/20100417191927%21187Hoppip.png","http://cdn.bulbagarden.net/upload/archive/5/5d/20130914032735%21010Caterpie.png"]
+
+var healtharr = [100,120,130,140,150,160,170,180,190,200,221,220,230,240,250,260,270,280,290,300];
+
+
+
+// barcode gen
+var numgen = Math.floor ((function getRandomArbitrary() {
+  return Math.random() * (9999999999999 - 1111111111111) + 1;
+    })())
+
+//b
+
+
+//var barcode = "1234567891234"
+var barcode = numgen.toString();
+console.log(barcode)
+var n = barcode.split('').map(Number);
+console.log(n)
+var form = Math.round(((n[2]+3+n[6]+9+n[7]+5)/(n[0]+50))*81);
+console.log('form: '+ form);
+
+
+
+
+//stats
+//p1
+//var p1health = 500;
+var p1attack1 = attackarr[form%20];
+var p1attack2 = attackarr[form%20];
+
+// attack value
+var p1defense = defarr[form%5];
+var p1health = healtharr[form%20];
+var p1image = imagearr[form%6];
+
+console.log(p1defense);
+
+
+
+//attacks
+p1attackclick = function foo (power){ 
+  //var dmg = power - 
+  p1health =  p1health - (power + p1defense) ;
+ 
+
+
+ if (p1health < 0){
+  p1health = "Stunned"
+ }
+  console.log(p1health)
+  $ ('#p1health').html(p1health)
+};
+
+p1defenseclick = function foo (power){
+  p1defense = p1defense + power
+  console.log(p1defense)
+  $ ('#p1defense').html(p1defense)
+};
+
+
+
+</script>
+
+<!-- player 1 --> 
+<div id="cardlayout2" class="box">
+<p><button onclick='genNewMonster'>new scan</button></p>
+
+<p >Health: <span id="p1health"></span> </p>
+<p >attack1: <span id="p1attack1"></span> </p>
+<p >attack2: <span id="p1attack2"></span> </p>
+<p >defense: <span id="p1defense"></span> </p>
+
+
+</div>
+
+
+
+    <div id="cardlayout1" class="box">
+
+      <p >Health: <span id="p1health"></span> </p>
+
+      <p ><span id="p1image"></span> </p>
+
+      <p><button onclick='p1attackclick(p1attack1)'>attack 1</button></p>
+
+     <p><button onclick='p1attackclick(p1attack2); console.log("p1attack")'>attack 2</button></p>
+
+     <p><button onclick='p1defenseclick(4); console.log("p1defence")'>defence</button></p>
+            
+   </div>
+
+
+</body>

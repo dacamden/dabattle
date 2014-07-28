@@ -111,6 +111,7 @@ $(document ).ready(function(){
         $('#p2attack1').html(p2attack1);
         $('#p2attack2').html(p2attack2);
        $('#attack1name').html(attack1name1 + " " + attack1name2);
+       $('#attack2name').html(attack2name1 + " " + attack2name2);
         $('#p2defense').html(p2defense);
         $('#p2defense').html(p2defense);
         $('#p2image').html("<img src=" + p2image + " height=" + 200 +
@@ -148,6 +149,48 @@ var ndword = ["Punch",
 "Poke",
 "Tickle",
 "Tackle"]
+
+var stword2 = ["Histrionic",
+"Hubristic",
+"Incendiary",
+"Insidious",
+"Insolent",
+"Intransigent",
+"Inveterate",
+"Irksome",
+"Jocular",
+"Judicious",
+"Limpid",
+"Loquacious",
+"Luminous",
+"Mannered",
+"Mendacious",
+"Mordant",
+"Munificent",
+"Nefarious",
+"Noxious",
+"Obtuse",
+"Pervasive",
+"Petulant",
+"Platitudinous"]
+
+var ndword2 =["Strike",
+"Scratch",
+"Glare",
+"Spit",
+"Tackle",
+"Smash",
+"Throw",
+"Crack",
+"Rip",
+"Trip",
+"Whack",
+"Whip",
+"Stroke",
+"Splash",
+"Claw",
+"Mash"]
+
 
 var attackarr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,19, 20
 ];
@@ -195,6 +238,8 @@ var formmaker = function(code){
     var p1image = imagearr[form1 % 6];
     var attack1name1 = stword[form1 % 18]
     var attack1name2 = ndword[form1 % 10]
+    var attack2name1 = stword2[form1 % 23]
+    var attack2name2 = ndword2[form1 % 16]
 
 //p2
     var p2attack1 = attackarr[form2 % 20];
@@ -277,8 +322,8 @@ p2defenseclick = function foo(power) {
       <p ><span id="p1image"></span> </p>
 
       <p><button id="attack1name" onclick='p1attackclick(p1attack1)'>attack 1</button></p>
-
-     <p><button onclick='p1attackclick(p1attack2); console.log("p1attack")'>attack 2</button></p>
+ 
+     <p><button id="attack2name" onclick='p1attackclick(p1attack2); console.log("p1attack")'>attack 2</button></p>
 
      <p><button onclick='p1defenseclick(p1defense); console.log("p1defence")'>defence</button></p>
             

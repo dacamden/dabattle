@@ -163,9 +163,12 @@ pAttack1 = function foo(power) {
                             );
                             turn = turn + 1;
                             $('#Turn').html(turn);
-                        }
+                        } 
                     }
-                }, delay);
+                }, delay); if (pHitPoints < 1) {
+        pHitPoints = 'Dead';
+        $('#pHitPoints').html(pHitPoints);
+    }
             }
         } else {
             $('#PlayerLog').html("<p>It is not your turn</p>");
@@ -235,7 +238,10 @@ pAttack2 = function foo(power) {
                             $('#Turn').html(turn);
                         }
                     }
-                }, delay);
+                }, delay); if (pHitPoints < 1) {
+        pHitPoints = 'Dead';
+        $('#pHitPoints').html(pHitPoints);
+    }
             }
         } else {
             $('#PlayerLog').html("<p>It is not your turn</p>");

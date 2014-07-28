@@ -110,6 +110,7 @@ $(document ).ready(function(){
         $('#p2health').html(p2health);
         $('#p2attack1').html(p2attack1);
         $('#p2attack2').html(p2attack2);
+       $('#attack1name').html(attack1name1 + " " + attack1name2);
         $('#p2defense').html(p2defense);
         $('#p2defense').html(p2defense);
         $('#p2image').html("<img src=" + p2image + " height=" + 200 +
@@ -117,6 +118,37 @@ $(document ).ready(function(){
 });
 
   //---------------
+var stword = ["Planned",
+"Spearheaded",
+"Boost",
+"Inspired",
+"Guided",
+"Tested",
+"Targeted",
+"Infinite",
+"Acidic",
+"Alluring",
+"Ambiguous",
+"Apathetic",
+"Aquatic",
+"Aallous",
+"Aapricious",
+"Aeadpan",
+"Aeafening",
+"Hurtful"]
+
+var ndword = ["Punch",
+"Kick",
+"Slap",
+"Bite",
+"Push",
+"Stomp",
+"Smack",
+"Grab",
+"Poke",
+"Tickle",
+"Tackle"]
+
 var attackarr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,19, 20
 ];
 var attackarr2 = [6, 7, 8, 9, 10, 11];
@@ -161,6 +193,8 @@ var formmaker = function(code){
     var p1defense = defarr[form1 % 5];
     var p1health = healtharr[form1 % 20];
     var p1image = imagearr[form1 % 6];
+    var attack1name1 = stword[form1 % 18]
+    var attack1name2 = ndword[form1 % 10]
 
 //p2
     var p2attack1 = attackarr[form2 % 20];
@@ -210,16 +244,16 @@ p2defenseclick = function foo(power) {
 //------------------
 
 // AI scripting
-function aimove (){
+// function aimove (){
 
-  Math.floor((function getRandomArbitrary() {
-    return Math.random() * (3 - 1) + 1;
-    })());
-  if (ranai === 1){p2attackclick(p2attack2)}
-  else if (ranai === 3){p2attackclick(p2attack1)}
-  else {p2defenseclick(p2defense)};
-  console.log(ranai)
-};
+//   Math.floor((function getRandomArbitrary() {
+//     return Math.random() * (3 - 1) + 1;
+//     })());
+//   if (ranai === 1){p2attackclick(p2attack2)}
+//   else if (ranai === 3){p2attackclick(p2attack1)}
+//   else {p2defenseclick(p2defense)};
+//   console.log(ranai)
+// };
 
 </script>
 
@@ -242,7 +276,7 @@ function aimove (){
 
       <p ><span id="p1image"></span> </p>
 
-      <p><button onclick='p1attackclick(p1attack1)'>attack 1</button></p>
+      <p><button id="attack1name" onclick='p1attackclick(p1attack1)'>attack 1</button></p>
 
      <p><button onclick='p1attackclick(p1attack2); console.log("p1attack")'>attack 2</button></p>
 

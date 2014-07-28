@@ -209,10 +209,17 @@ p2defenseclick = function foo(power) {
 
 //------------------
 
-//player interface
- 
+// AI scripting
+function aimove (){
 
-
+  Math.floor((function getRandomArbitrary() {
+    return Math.random() * (3 - 1) + 1;
+    })());
+  if (ranai === 1){p2attackclick(p2attack2)}
+  else if (ranai === 3){p2attackclick(p2attack1)}
+  else {p2defenseclick(p2defense)};
+  console.log(ranai)
+};
 
 </script>
 
@@ -237,9 +244,9 @@ p2defenseclick = function foo(power) {
 
       <p><button onclick='p1attackclick(p1attack1)'>attack 1</button></p>
 
-     <p><button onclick='p1attackclick(p1attack1); console.log("p1attack")'>attack 2</button></p>
+     <p><button onclick='p1attackclick(p1attack2); console.log("p1attack")'>attack 2</button></p>
 
-     <p><button onclick='p1defenseclick(4); console.log("p1defence")'>defence</button></p>
+     <p><button onclick='p1defenseclick(p1defense); console.log("p1defence")'>defence</button></p>
             
    </div>
   
@@ -253,11 +260,13 @@ p2defenseclick = function foo(power) {
 
       <p ><span id="p2image"></span> </p>
 
-      <p><button onclick='p2attackclick(p2attack2)'>attack 1</button></p>
+      <p><button onclick='aimove'>AI MOVE</button></p>
+
+      <p><button onclick='p2attackclick(p2attack1)'>attack 1</button></p>
 
      <p><button onclick='p2attackclick(p2attack2); console.log("p1attack")'>attack 2</button></p>
 
-     <p><button onclick='p2defenseclick(4); console.log("p1defence")'>defence</button></p>
+     <p><button onclick='p2defenseclick(p2defense); console.log("p1defence")'>defence</button></p>
             
    </div>
   

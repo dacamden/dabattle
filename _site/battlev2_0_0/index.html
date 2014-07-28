@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel = "stylesheet" href="style.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src = "script.js"></script>
+  </head>
+  <body>
+    <div id = "PlayerCard">
+      <p>HP: <span id="pHitPoints"></span></p>
+      <p>Atk: <span id="pBaseDmg"></span></p>
+      <p>Def: <span id="pDefPoints"></span></p>
+      <p>Mit: <span id="pMit"></span>%</p>
+      <img src="#"></img>
+    
+    <div id = "PlayerLog">
+    </div>
+    <div id = "PlayerMoves">
+      <p><button onclick='pAttack1(7)'>attack 1</button></p>
+      <p><button onclick='pAttack2(7)'>attack 2</button></p>
+      <p><button onclick='pDef(7)'>Defense</button></p>
+    </div>
+    </div>
+    <div id = "AiCard">
+      <p>HP: <span id="cHitPoints"></span></p>
+      <p>Atk: <span id="cBaseDmg"></span></p>
+      <p>Def: <span id="cDefPoints"></span></p>
+      <p>Mit: <span id="cMit"></span>%</p>
+      <img src="#"></img>
+    
+<!--<div id = "AiMoves">
+      <p><button onclick='cAttack1(7)'>attack 1</button></p>
+      <p><button onclick='cAttack2(7)'>attack 2</button></p>
+      <p><button onclick='cDef(7)'>Defense</button></p>
+    </div>-->
+    <div style = "font-size: 1.2em;" id = "AiLog">
+    </div>
+  </div>
+    <div id = "VariableBox">
+      <p><button onclick='changeTurn(1)'>ChangeTurn (test)</button></p>
+      <p>Turn: <span id = "Turn"></span></p>
+    </div>
+  </body>
+</html>

@@ -95,29 +95,45 @@
 <body>
 
 <script type="text/javascript">
-
 //P1 
-$(document ).ready(function(){
-        $('#p1health').html(p1health);
-        $('#p1attack1').html(p1attack1);
-        $('#p1attack2').html(p1attack2);
-        $('#p1defense').html(p1defense);
-        $('#p1defense').html(p1defense);
-        $('#p1image').html("<img src=" + p1image + " height=" + 200 +
-            " width=" + 200 + ">");
-
-
-        $('#p2health').html(p2health);
-        $('#p2attack1').html(p2attack1);
-        $('#p2attack2').html(p2attack2);
-        $('#p2defense').html(p2defense);
-        $('#p2defense').html(p2defense);
-        $('#p2image').html("<img src=" + p2image + " height=" + 200 +
-            " width=" + 200 + ">");
+$(document).ready(function() {
+    $('#p1health').html(p1health);
+    $('#p1attack1').html(p1attack1);
+    $('#p1attack2').html(p1attack2);
+    $('#p1defense').html(p1defense);
+    $('#p1defense').html(p1defense);
+    $('#p1image').html("<img src=" + p1image + " height=" + 200 +
+        " width=" + 200 + ">");
+    $('#p2health').html(p2health);
+    $('#p2attack1').html(p2attack1);
+    $('#p2attack2').html(p2attack2);
+    $('#attack1name').html(attack1name1 + " " + attack1name2);
+    $('#attack2name').html(attack2name1 + " " + attack2name2);
+    $('#p2defense').html(p2defense);
+    $('#p2defense').html(p2defense);
+    $('#p2image').html("<img src=" + p2image + " height=" + 200 +
+        " width=" + 200 + ">");
 });
-
-  //---------------
-var attackarr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,19, 20
+//---------------
+var stword = ["Planned", "Spearheaded", "Boost", "Inspired", "Guided", "Tested",
+    "Targeted", "Infinite", "Acidic", "Alluring", "Ambiguous", "Apathetic",
+    "Aquatic", "Zealous", "Aapricious", "Aeadpan", "Deafening", "Hurtful"
+];
+var ndword = ["Punch", "Kick", "Slap", "Bite", "Push", "Stomp", "Smack", "Grab",
+    "Poke", "Tickle", "Tackle"
+];
+var stword2 = ["Histrionic", "Hubristic", "Incendiary", "Insidious", "Insolent",
+    "Intransigent", "Inveterate", "Irksome", "Jocular", "Judicious",
+    "Limpid", "Loquacious", "Luminous", "Mannered", "Mendacious", "Mordant",
+    "Munificent", "Nefarious", "Noxious", "Obtuse", "Pervasive", "Petulant",
+    "Platitudinous"
+];
+var ndword2 = ["Strike", "Scratch", "Glare", "Spit", "Tackle", "Smash", "Throw",
+    "Crack", "Rip", "Trip", "Whack", "Whip", "Stroke", "Splash", "Claw",
+    "Mash"
+];
+var attackarr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+    19, 20
 ];
 var attackarr2 = [6, 7, 8, 9, 10, 11];
 var defarr = [1, 2, 3, 4, 5];
@@ -125,94 +141,94 @@ var imagearr = ["http://cdn.bulbagarden.net/upload/b/b8/059Arcanine.png",
     "http://cdn.bulbagarden.net/upload/c/cd/024Arbok.png",
     "http://cdn.bulbagarden.net/upload/c/cc/147Dratini.png",
     "http://cdn.bulbagarden.net/upload/archive/f/f8/20100417191927%21187Hoppip.png",
-    "http://cdn.bulbagarden.net/upload/archive/5/5d/20130914032735%21010Caterpie.png","http://blog.dacamden.co.uk/images/leo.JPG"
+    "http://cdn.bulbagarden.net/upload/archive/5/5d/20130914032735%21010Caterpie.png",
+    "http://blog.dacamden.co.uk/images/leo.JPG",
+    "http://studio101.biz/wp-content/plugins/files/civicrm/persist/contribute/images/Monsters%20vs%20Aliens%20035.jpg",
+    "https://lh3.googleusercontent.com/-lWO0Yu4OHJc/TXpEikJmhII/AAAAAAAAAe0/BWobw90XdlM/s1600/March-of-the-Monsters-Day-11.jpg","https://stevenchasestudios.files.wordpress.com/2012/10/yeti-2.jpg"
 ];
-var healtharr = [100, 120, 130, 140, 150, 160, 170, 180, 190, 200, 221, 220, 230, 240, 250, 260, 270, 280, 290, 300
+var healtharr = [100, 120, 130, 140, 150, 160, 170, 180, 190, 200, 221, 220,
+    230, 240, 250, 260, 270, 280, 290, 300
 ];
 // barcode gen
 var barcode1 = Math.floor((function getRandomArbitrary() {
     return Math.random() * (9999999999999 - 1111111111111) + 1;
 })());
-
 var barcode2 = Math.floor((function getRandomArbitrary() {
     return Math.random() * (9999999999999 - 1111111111111) + 1;
 })());
-
-var formmaker = function(code){
-
-
+var formmaker = function(code) {
     var barcodex = code.toString();
     console.log(barcode1);
     var n = barcodex.split('').map(Number);
     console.log(n);
     return Math.round(((n[2] + 3 + n[6] + 9 + n[7] + 5) / (n[0] + 50)) * 81);
-  }
-
-  var form1 = formmaker(barcode1);
-  var form2 = formmaker(barcode2);
+};
+var form1 = formmaker(barcode1),
+    form2 = formmaker(barcode2);
 //----------------
-
-
 //stats
 //p1
-    var p1attack1 = attackarr[form1 % 20];
-    var p1attack2 = attackarr2[form1 % 5];
-    // attack value
-    var p1defense = defarr[form1 % 5];
-    var p1health = healtharr[form1 % 20];
-    var p1image = imagearr[form1 % 6];
-
+var p1attack1 = attackarr[form1 % 20].
+    p1attack2 = attackarr2[form1 % 5];
+// attack value
+var p1defense = defarr[form1 % 5],
+    p1health = healtharr[form1 % 20],
+    p1image = imagearr[form1 % 9],
+    attack1name1 = stword[form1 % 18],
+    attack1name2 = ndword[form1 % 10],
+    attack2name1 = stword2[form1 % 23],
+    attack2name2 = ndword2[form1 % 16];
 //p2
-    var p2attack1 = attackarr[form2 % 20];
-    var p2attack2 = attackarr2[form2 % 5];
-    // attack value
-    var p2defense = defarr[form2 % 5];
-    var p2health = healtharr[form2 % 20];
-    var p2image = imagearr[form2 % 6];
-
+var p2attack1 = attackarr[form2 % 20];
+var p2attack2 = attackarr2[form2 % 5];
+// attack value
+var p2defense = defarr[form2 % 5],
+    p2health = healtharr[form2 % 20],
+    p2image = imagearr[form2 % 9];
 //attacks
-    
-    
-p1attackclick = function foo(power) {
+var p1attackclick = function foo(power) {
     //var dmg = power - 
     p2health = p2health - (power + p2defense);
     if (p2health < 0) {
-        p2health = "Stunned"
+        p2health = "Stunned";
     }
     console.log(p2health);
     $('#p2health').html(p2health);
 };
-
-
-p1defenseclick = function foo(power) {
-    p1defense = p1defense + power
+var p1defenseclick = function foo(power) {
+    p1defense = p1defense + power;
     console.log(p1defense);
-    $('#p1defense').html(p1defense);}
-
-
-p2attackclick = function foo(power) {
+    $('#p1defense').html(p1defense);
+};
+var p2attackclick = function foo(power) {
     //var dmg = power - 
     p1health = p1health - (power + p1defense);
     if (p1health < 0) {
-        p1health = "Stunned"
+        p1health = "Stunned";
     }
     console.log(p1health);
-    $('#p2health').html(p1health);
+    $('#p1health').html(p1health);
 };
-
-
-p2defenseclick = function foo(power) {
-    p2defense = p2defense + power
+var p2defenseclick = function foo(power) {
+    p2defense = p2defense + power;
     console.log(p1defense);
-    $('#p1defense').html(p2defense);}
+    $('#p1defense').html(p2defense);
+};
 
 
 //------------------
 
-//player interface
- 
+// AI scripting
+// function aimove (){
 
-
+//   Math.floor((function getRandomArbitrary() {
+//     return Math.random() * (3 - 1) + 1;
+//     })());
+//   if (ranai === 1){p2attackclick(p2attack2)}
+//   else if (ranai === 3){p2attackclick(p2attack1)}
+//   else {p2defenseclick(p2defense)};
+//   console.log(ranai)
+// };
 
 </script>
 
@@ -235,11 +251,11 @@ p2defenseclick = function foo(power) {
 
       <p ><span id="p1image"></span> </p>
 
-      <p><button onclick='p1attackclick(p1attack1)'>attack 1</button></p>
+      <p><button id="attack1name" onclick='p1attackclick(p1attack1)'>attack 1</button></p>
+ 
+     <p><button id="attack2name" onclick='p1attackclick(p1attack2); console.log("p1attack")'>attack 2</button></p>
 
-     <p><button onclick='p1attackclick(p1attack1); console.log("p1attack")'>attack 2</button></p>
-
-     <p><button onclick='p1defenseclick(4); console.log("p1defence")'>defence</button></p>
+     <p><button onclick='p1defenseclick(p1defense); console.log("p1defence")'>defence</button></p>
             
    </div>
   
@@ -253,11 +269,13 @@ p2defenseclick = function foo(power) {
 
       <p ><span id="p2image"></span> </p>
 
-      <p><button onclick='p2attackclick(p2attack2)'>attack 1</button></p>
+      <p><button onclick='aimove'>AI MOVE</button></p>
+
+      <p><button onclick='p2attackclick(p2attack1)'>attack 1</button></p>
 
      <p><button onclick='p2attackclick(p2attack2); console.log("p1attack")'>attack 2</button></p>
 
-     <p><button onclick='p2defenseclick(4); console.log("p1defence")'>defence</button></p>
+     <p><button onclick='p2defenseclick(p2defense); console.log("p1defence")'>defence</button></p>
             
    </div>
   

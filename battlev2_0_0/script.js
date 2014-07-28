@@ -3,9 +3,27 @@
 /////////////////////////////////////
 
 //Arrays
+var stword = ["Planned", "Spearheaded", "Boost", "Inspired", "Guided", "Tested",
+    "Targeted", "Infinite", "Acidic", "Alluring", "Ambiguous", "Apathetic",
+    "Aquatic", "Zealous", "Aapricious", "Aeadpan", "Deafening", "Hurtful"
+];
+var ndword = ["Punch", "Kick", "Slap", "Bite", "Push", "Stomp", "Smack", "Grab",
+    "Poke", "Tickle", "Tackle"
+];
+var stword2 = ["Histrionic", "Hubristic", "Incendiary", "Insidious", "Insolent",
+    "Intransigent", "Inveterate", "Irksome", "Jocular", "Judicious",
+    "Limpid", "Loquacious", "Luminous", "Mannered", "Mendacious", "Mordant",
+    "Munificent", "Nefarious", "Noxious", "Obtuse", "Pervasive", "Petulant",
+    "Platitudinous"
+];
+var ndword2 = ["Strike", "Scratch", "Glare", "Spit", "Tackle", "Smash", "Throw",
+    "Crack", "Rip", "Trip", "Whack", "Whip", "Stroke", "Splash", "Claw",
+    "Mash"
+];
 
-var healtharr = [1000, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2210, 2200,
-    2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000
+
+var healtharr = [200, 220, 240, 280, 300, 320, 330, 340, 350, 360, 370, 380,
+    400, 420, 450, 460, 470, 480, 490, 500
 ];
 var defarr = [1, 2, 3, 4, 5];
 var attackarr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
@@ -46,6 +64,11 @@ var pHitPoints = healtharr[form1 % 20],
     pMit = Math.log(pDefPoints) / Math.log(1.1),
     pImg = imagearr[form1 % 9];
 
+var attack1name1 = stword[form1 % 18],
+    attack1name2 = ndword[form1 % 10],
+    attack2name1 = stword2[form1 % 23],
+    attack2name2 = ndword2[form1 % 16];
+
 //Declare Monster Stat Variables
 
 var cHitPoints = healtharr[form2 % 20],
@@ -74,6 +97,8 @@ $(document).ready(function(){
         " width=" + 200 + ">");
   $('#cImg').html("<img src=" + cImg + " height=" + 200 +
         " width=" + 200 + ">");
+  $('#attack1name').html(attack1name1 + " " + attack1name2);
+  $('#attack2name').html(attack2name1 + " " + attack2name2);
 });
 
 //Declare Button Functions

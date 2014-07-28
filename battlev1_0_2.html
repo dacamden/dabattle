@@ -142,7 +142,9 @@ var imagearr = ["http://cdn.bulbagarden.net/upload/b/b8/059Arcanine.png",
     "http://cdn.bulbagarden.net/upload/c/cc/147Dratini.png",
     "http://cdn.bulbagarden.net/upload/archive/f/f8/20100417191927%21187Hoppip.png",
     "http://cdn.bulbagarden.net/upload/archive/5/5d/20130914032735%21010Caterpie.png",
-    "http://blog.dacamden.co.uk/images/leo.JPG"
+    "http://blog.dacamden.co.uk/images/leo.JPG",
+    "http://studio101.biz/wp-content/plugins/files/civicrm/persist/contribute/images/Monsters%20vs%20Aliens%20035.jpg",
+    "https://lh3.googleusercontent.com/-lWO0Yu4OHJc/TXpEikJmhII/AAAAAAAAAe0/BWobw90XdlM/s1600/March-of-the-Monsters-Day-11.jpg","https://stevenchasestudios.files.wordpress.com/2012/10/yeti-2.jpg"
 ];
 var healtharr = [100, 120, 130, 140, 150, 160, 170, 180, 190, 200, 221, 220,
     230, 240, 250, 260, 270, 280, 290, 300
@@ -171,7 +173,7 @@ var p1attack1 = attackarr[form1 % 20].
 // attack value
 var p1defense = defarr[form1 % 5],
     p1health = healtharr[form1 % 20],
-    p1image = imagearr[form1 % 6],
+    p1image = imagearr[form1 % 9],
     attack1name1 = stword[form1 % 18],
     attack1name2 = ndword[form1 % 10],
     attack2name1 = stword2[form1 % 23],
@@ -182,7 +184,7 @@ var p2attack2 = attackarr2[form2 % 5];
 // attack value
 var p2defense = defarr[form2 % 5],
     p2health = healtharr[form2 % 20],
-    p2image = imagearr[form2 % 6];
+    p2image = imagearr[form2 % 9];
 //attacks
 var p1attackclick = function foo(power) {
     //var dmg = power - 

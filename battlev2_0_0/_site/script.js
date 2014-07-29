@@ -20,7 +20,7 @@ var ndword2 = ["Strike", "Scratch", "Glare", "Spit", "Tackle", "Smash", "Throw",
 	"Crack", "Rip", "Trip", "Whack", "Whip", "Stroke", "Splash", "Claw",
 	"Mash"
 ];
-var multi = [0.8, 0.9, 0.9, 1, 1, 1, 1.1, 1.1, 1.2];
+var multi = [1.8, 1.9, 1.9, 2, 2, 2, 2.1, 2.1, 2.2];
 
 
 var healtharr = [200, 220, 240, 280, 300, 320, 330, 340, 350, 360, 370, 380,

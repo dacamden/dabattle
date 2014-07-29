@@ -133,6 +133,9 @@ $('#AiLog').html(
 						$('#AiLog').html(
 							"<p style = 'color: red;'>Computer Attacked Player!</p>"
 						);
+            $('#allLog').prepend(
+              "<p style = 'color: red;'> C: Attacked player for " + Math.round(dmg) + "</p>" 
+			);
 						turn = turn + 1;
 						$('#Turn').html(turn);
 					} else if (computerChoice <= 0.67) {
@@ -143,6 +146,9 @@ $('#AiLog').html(
 						$('#AiLog').html(
 							"<p style = 'color: red;'>Computer Attacked Player!</p>"
 						);
+            $('#allLog').prepend(
+              "<p style = 'color: red;'>C: Attacked player for " + Math.round(dmg) + "</p>" 
+			);
 						turn = turn + 1;
 						$('#Turn').html(turn);
 					} else {
@@ -151,14 +157,21 @@ $('#AiLog').html(
 						$('#cDefPoints').html(Math.round(cDefPoints));
 						$('#cMit').html(Math.round(cMit));
 						$('#AiLog').html(
-							"<p style = 'color: green;'>Computer increased defense</p>"
+              "<p style = 'color: green;'>C: Computer increased defense</p>"
 						);
+            $('#allLog').prepend(
+              "<p style = 'color: green;'>C: Increased defense by " + Math.round(cDefPlus) + "</p>" 
+			);
 						turn = turn + 1;
 						$('#Turn').html(turn);
 					}
 				} else {
 					$('#AiLog').html("<p>Waiting...</p>");
 				}
+        if (pHitPoints < 1) {
+		pHitPoints = 'Dead';
+		$('#pHitPoints').html(pHitPoints);
+	}
 			}, delay);
 };
 
@@ -168,13 +181,18 @@ pAttack1 = function foo(power) {
 	if (pHitPoints < 1) {
 		pHitPoints = 'Dead';
 		$('#pHitPoints').html(pHitPoints);
-	} else {
+  } else if (pHitPoints === 'Dead'){
+    $('#PlayerLog').html('<p>You are dead...</p>');
+  } else {
 		if ((turn % 2) === 1) {
 			var dmg = pBaseMult * power * (1 - (cMit / 100));
 			cHitPoints = cHitPoints - dmg;
 			$('#cHitPoints').html(Math.round(cHitPoints));
 			$('#PlayerLog').html(
 				"<p style = 'color: red;'>Player attacked Computer!</p>"
+			);
+      $('#allLog').prepend(
+        "<p style = 'color: red;'>P: Attacked computer for " + Math.round(dmg) + "</p>" 
 			);
 			turn = turn + 1;
 			$('#Turn').html(turn);
@@ -195,13 +213,18 @@ pAttack2 = function foo(power) {
 	if (pHitPoints < 1) {
 		pHitPoints = 'Dead';
 		$('#pHitPoints').html(pHitPoints);
-	} else {
+	} else if (pHitPoints === 'Dead'){
+    $('#PlayerLog').html('<p>You are dead...</p>');
+  } else {
 		if ((turn % 2) === 1) {
 			var dmg = pBaseMult * power * (1 - (cMit / 100));
 			cHitPoints = cHitPoints - dmg;
 			$('#cHitPoints').html(Math.round(cHitPoints));
 			$('#PlayerLog').html(
 				"<p style = 'color: red;'>Player attacked Computer!</p>"
+			);
+      $('#allLog').prepend(
+        "<p style = 'color: red;'>P: Attacked computer for " + Math.round(dmg) + "</p>" 
 			);
 			turn = turn + 1;
 			$('#Turn').html(turn);
@@ -221,7 +244,9 @@ pDef = function foo(power) {
 	if (pHitPoints < 1) {
 		pHitPoints = 'Dead';
 		$('#pHitPoints').html(pHitPoints);
-	} else {
+	} else if (pHitPoints === 'Dead'){
+    $('#PlayerLog').html('<p>You are dead...</p>');
+  } else {
 		if ((turn % 2) === 1) {
 			pDefPoints = pDefPoints + power;
 			pMit = Math.log(pDefPoints) / Math.log(1.1);
@@ -229,6 +254,9 @@ pDef = function foo(power) {
 			$('#pMit').html(Math.round(pMit));
 			$('#PlayerLog').html(
 				"<p style = 'color: green;'>Player increased defense</p>"
+			);
+      $('#allLog').prepend(
+        "<p style = 'color: Green;'>P: Increased Defense by " + Math.round(pDefPlus) + "</p>" 
 			);
 			turn = turn + 1;
 			$('#Turn').html(turn);

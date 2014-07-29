@@ -116,6 +116,8 @@ $(document).ready(function() {
 
 //Declare Button Functions
 
+
+
 pAttack1 = function foo(power) {
 	if (pHitPoints < 1) {
 		pHitPoints = 'Dead';

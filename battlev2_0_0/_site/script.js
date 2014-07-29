@@ -76,7 +76,7 @@ var attack1name1 = stword[form1 % 18],
 	attack2name1 = stword2[form1 % 23],
 	attack2name2 = ndword2[form1 % 16];
 
-//Declare Monster Stat Variables
+//Declare Ai Stat Variables
 
 var cHitPoints = healtharr[form2 % 20],
 	cBaseMult = multi[form2 % 9],
@@ -91,7 +91,8 @@ var cHitPoints = healtharr[form2 % 20],
 
 var turn = 1;
 
-//Jquery Stats Declaration
+
+//Jquery Stats input to html
 
 $(document).ready(function() {
 	$('#pHitPoints').html(Math.round(pHitPoints));
@@ -114,7 +115,7 @@ $(document).ready(function() {
 
 });
 
-//Declare Button Functions
+//Declare Computer attack function
 
 computerMove = function(power) {
 $('#AiLog').html(
@@ -161,6 +162,7 @@ $('#AiLog').html(
 			}, delay);
 };
 
+// Declare player button fucntions
 
 pAttack1 = function foo(power) {
 	if (pHitPoints < 1) {
@@ -180,7 +182,7 @@ pAttack1 = function foo(power) {
 				cHitPoints = 'Dead';
 				$('#cHitPoints').html(cHitPoints);
 			} else {
-				computerMove(1)
+				computerMove(1) //use computer move. 1 is a pointless parameter.
 			}
 		} else {
 			$('#PlayerLog').html("<p>It is not your turn</p>");

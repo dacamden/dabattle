@@ -1,82 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="style.css" rel="stylesheet">
-    <script src=
-    "http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+	<link href="style.css" rel="stylesheet">
+	<script src=
+	"http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="script.js"></script>
 
-    <title>
-    </title>
+	<title></title>
 </head>
 
 <body>
-    <div id="PlayerCard">
-        <p>HP: <span id="pHitPoints"></span></p>
+	<div id="container">
+		<div id="PlayerCard">
+			<p>HP: <span id="pHitPoints"></span></p>
 
+			<p>Atk: <span id="pBaseMult"></span></p>
 
-        <p>Atk: <span id="pBaseDmg"></span></p>
+			<p>Def: <span id="pDefPoints"></span></p>
 
+			<p>Mit: <span id="pMit"></span>%</p>
 
-        <p>Def: <span id="pDefPoints"></span></p>
+			<p><span id="pImg"></span></p>
 
+			<div id="PlayerLog"></div>
 
-        <p>Mit: <span id="pMit"></span>%</p>
+			<div id="PlayerMoves">
+				<p><button id="attack1name" onclick='pAttack1(pAtk1)'>attack
+				1</button> <button id="attack2name" onclick=
+				'pAttack2(pAtk2)'>attack2</button></p>
 
+				<p><button onclick='pDef(pDefPlus)'>Defense</button></p>
+			</div>
+		</div>
 
-        <p><span id="pImg"></span>
-        </p>
+		<div id="AiCard">
+			<p>HP: <span id="cHitPoints"></span></p>
 
+			<p>Atk: <span id="cBaseMult"></span></p>
 
-        <div id="PlayerLog">
-        </div>
+			<p>Def: <span id="cDefPoints"></span></p>
 
+			<p>Mit: <span id="cMit"></span>%</p>
 
-        <div id="PlayerMoves">
-            <p><button id="attack1name" onclick='pAttack1(7)'>attack 1</button>
-            <button id="attack2name" onclick='pAttack2(7)'>attack
-            2</button></p>
+			<p><span id="cImg"></span></p><!--<div id = "AiMoves">
+	  <p><button onclick='cAttack1(7)'>attack 1</button></p>
+	  <p><button onclick='cAttack2(7)'>attack 2</button></p>
+	  <p><button onclick='cDef(7)'>Defense</button></p>
+	</div>-->
 
+			<div id="AiLog" style="font-size: 1.2em;"></div>
+		</div>
 
-            <p><button onclick='pDef(7)'>Defense</button>
-            </p>
-        </div>
-    </div>
+		<div id="VariableBox">
+			<p><button onclick='changeTurn(1)'>ChangeTurn (test)</button></p>
 
-
-    <div id="AiCard">
-        <p>HP: <span id="cHitPoints"></span></p>
-
-
-        <p>Atk: <span id="cBaseDmg"></span></p>
-
-
-        <p>Def: <span id="cDefPoints"></span></p>
-
-
-        <p>Mit: <span id="cMit"></span>%</p>
-
-
-        <p><span id="cImg"></span>
-        </p>
-        <!--<div id = "AiMoves">
-      <p><button onclick='cAttack1(7)'>attack 1</button></p>
-      <p><button onclick='cAttack2(7)'>attack 2</button></p>
-      <p><button onclick='cDef(7)'>Defense</button></p>
-    </div>-->
-
-
-        <div id="AiLog" style="font-size: 1.2em;">
-        </div>
-    </div>
-
-
-    <div id="VariableBox">
-        <p><button onclick='changeTurn(1)'>ChangeTurn (test)</button>
-        </p>
-
-
-        <p>Turn: <span id="Turn"></span></p>
-    </div>
+			<p>Turn: <span id="Turn"></span></p>
+		</div>
+	</div>
 </body>
 </html>

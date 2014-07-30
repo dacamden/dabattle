@@ -98,7 +98,7 @@ $(document).ready(function() {
 	$('#pHitPoints').html(Math.round(pHitPoints));
 	$('#pBaseMult').html(pBaseMult);
 	$('#pDefPoints').html(Math.round(pDefPoints));
-	$('#pMit').html(Math.round(cMit));
+	$('#pMit').html(Math.round(pMit));
 	$('#cHitPoints').html(Math.round(cHitPoints));
 	$('#cBaseMult').html(cBaseMult);
 	$('#cDefPoints').html(Math.round(cDefPoints));

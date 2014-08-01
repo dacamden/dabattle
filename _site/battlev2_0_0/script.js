@@ -76,7 +76,7 @@ var attack1name1 = stword[form1 % 18],
 	attack2name1 = stword2[form1 % 23],
 	attack2name2 = ndword2[form1 % 16];
 
-//Declare Monster Stat Variables
+//Declare Ai Stat Variables
 
 var cHitPoints = healtharr[form2 % 20],
 	cBaseMult = multi[form2 % 9],
@@ -91,13 +91,14 @@ var cHitPoints = healtharr[form2 % 20],
 
 var turn = 1;
 
-//Jquery Stats Declaration
+
+//Jquery Stats input to html
 
 $(document).ready(function() {
 	$('#pHitPoints').html(Math.round(pHitPoints));
 	$('#pBaseMult').html(pBaseMult);
 	$('#pDefPoints').html(Math.round(pDefPoints));
-	$('#pMit').html(Math.round(cMit));
+	$('#pMit').html(Math.round(pMit));
 	$('#cHitPoints').html(Math.round(cHitPoints));
 	$('#cBaseMult').html(cBaseMult);
 	$('#cDefPoints').html(Math.round(cDefPoints));
@@ -114,15 +115,75 @@ $(document).ready(function() {
 
 });
 
-//Declare Button Functions
+//Declare Computer attack function
 
+computerMove = function(power) {
+$('#AiLog').html(
+				"<p style = 'color: blue;'>Computer is choosing a Move</p>"
+			);
+			var delay = 2500; //2.5 seconds
+			setTimeout(function() {
+				if ((turn % 2) === 0) {
+					var computerChoice = Math.random();
+					if (computerChoice < 0.34) {
+						var dmg = cBaseMult * cAtk1 * (1 - (pMit /
+							100));
+						pHitPoints = pHitPoints - dmg;
+						$('#pHitPoints').html(Math.round(pHitPoints));
+						$('#AiLog').html(
+							"<p style = 'color: red;'>Computer Attacked Player!</p>"
+						);
+            $('#allLog').prepend(
+              "<p style = 'color: red;'> C: Attacked player for " + Math.round(dmg) + "</p>" 
+			);
+						turn = turn + 1;
+						$('#Turn').html(turn);
+					} else if (computerChoice <= 0.67) {
+						var dmg = cBaseMult * cAtk2 * (1 - (pMit /
+							100));
+						pHitPoints = pHitPoints - dmg;
+						$('#pHitPoints').html(Math.round(pHitPoints));
+						$('#AiLog').html(
+							"<p style = 'color: red;'>Computer Attacked Player!</p>"
+						);
+            $('#allLog').prepend(
+              "<p style = 'color: red;'>C: Attacked player for " + Math.round(dmg) + "</p>" 
+			);
+						turn = turn + 1;
+						$('#Turn').html(turn);
+					} else {
+						cDefPoints = cDefPoints + cDefPlus;
+						cMit = Math.log(cDefPoints) / Math.log(1.1);
+						$('#cDefPoints').html(Math.round(cDefPoints));
+						$('#cMit').html(Math.round(cMit));
+						$('#AiLog').html(
+              "<p style = 'color: green;'>C: Computer increased defense</p>"
+						);
+            $('#allLog').prepend(
+              "<p style = 'color: green;'>C: Increased defense by " + Math.round(cDefPlus) + "</p>" 
+			);
+						turn = turn + 1;
+						$('#Turn').html(turn);
+					}
+				} else {
+					$('#AiLog').html("<p>Waiting...</p>");
+				}
+        if (pHitPoints < 1) {
+		pHitPoints = 'Dead';
+		$('#pHitPoints').html(pHitPoints);
+	}
+			}, delay);
+};
 
+// Declare player button fucntions
 
 pAttack1 = function foo(power) {
 	if (pHitPoints < 1) {
 		pHitPoints = 'Dead';
 		$('#pHitPoints').html(pHitPoints);
-	} else {
+  } else if (pHitPoints === 'Dead'){
+    $('#PlayerLog').html('<p>You are dead...</p>');
+  } else {
 		if ((turn % 2) === 1) {
 			var dmg = pBaseMult * power * (1 - (cMit / 100));
 			cHitPoints = cHitPoints - dmg;
@@ -130,60 +191,16 @@ pAttack1 = function foo(power) {
 			$('#PlayerLog').html(
 				"<p style = 'color: red;'>Player attacked Computer!</p>"
 			);
+      $('#allLog').prepend(
+        "<p style = 'color: red;'>P: Attacked computer for " + Math.round(dmg) + "</p>" 
+			);
 			turn = turn + 1;
 			$('#Turn').html(turn);
 			if (cHitPoints < 1) {
 				cHitPoints = 'Dead';
 				$('#cHitPoints').html(cHitPoints);
 			} else {
-				$('#AiLog').html(
-					"<p style = 'color: blue;'>Computer is choosing a Move</p>"
-				);
-				var delay = 2500; //2.5 seconds
-				setTimeout(function() {
-					if ((turn % 2) === 0) {
-						var computerChoice = Math.random();
-						if (computerChoice < 0.34) {
-							var dmg = cBaseMult * cAtk1 * (1 - (pMit /
-								100));
-							pHitPoints = pHitPoints - dmg;
-							$('#pHitPoints').html(Math.round(
-								pHitPoints));
-							$('#AiLog').html(
-								"<p style = 'color: red;'>Computer Attacked Player!</p>"
-							);
-							turn = turn + 1;
-							$('#Turn').html(turn);
-						} else if (computerChoice <= 0.67) {
-							var dmg = cBaseMult * cAtk2 * (1 - (pMit /
-								100));
-							pHitPoints = pHitPoints - dmg;
-							$('#pHitPoints').html(Math.round(
-								pHitPoints));
-							$('#AiLog').html(
-								"<p style = 'color: red;'>Computer Attacked Player!</p>"
-							);
-							turn = turn + 1;
-							$('#Turn').html(turn);
-						} else {
-							cDefPoints = cDefPoints + cDefPlus;
-							cMit = Math.log(cDefPoints) / Math.log(
-								1.1);
-							$('#cDefPoints').html(Math.round(
-								cDefPoints));
-							$('#cMit').html(Math.round(cMit));
-							$('#AiLog').html(
-								"<p style = 'color: green;'>Computer increased defense</p>"
-							);
-							turn = turn + 1;
-							$('#Turn').html(turn);
-						}
-						if (pHitPoints < 1) {
-							pHitPoints = 'Dead';
-							$('#pHitPoints').html(pHitPoints);
-						}
-					}
-				}, delay);
+				computerMove(1) //use computer move. 1 is a pointless parameter.
 			}
 		} else {
 			$('#PlayerLog').html("<p>It is not your turn</p>");
@@ -196,7 +213,9 @@ pAttack2 = function foo(power) {
 	if (pHitPoints < 1) {
 		pHitPoints = 'Dead';
 		$('#pHitPoints').html(pHitPoints);
-	} else {
+	} else if (pHitPoints === 'Dead'){
+    $('#PlayerLog').html('<p>You are dead...</p>');
+  } else {
 		if ((turn % 2) === 1) {
 			var dmg = pBaseMult * power * (1 - (cMit / 100));
 			cHitPoints = cHitPoints - dmg;
@@ -204,60 +223,16 @@ pAttack2 = function foo(power) {
 			$('#PlayerLog').html(
 				"<p style = 'color: red;'>Player attacked Computer!</p>"
 			);
+      $('#allLog').prepend(
+        "<p style = 'color: red;'>P: Attacked computer for " + Math.round(dmg) + "</p>" 
+			);
 			turn = turn + 1;
 			$('#Turn').html(turn);
 			if (cHitPoints < 1) {
 				cHitPoints = 'Dead';
 				$('#cHitPoints').html(cHitPoints);
 			} else {
-				$('#AiLog').html(
-					"<p style = 'color: blue;'>Computer is choosing a Move</p>"
-				);
-				var delay = 2500; //2.5 seconds
-				setTimeout(function() {
-					if ((turn % 2) === 0) {
-						var computerChoice = Math.random();
-						if (computerChoice < 0.34) {
-							var dmg = cBaseMult * cAtk1 * (1 - (pMit /
-								100));
-							pHitPoints = pHitPoints - dmg;
-							$('#pHitPoints').html(Math.round(
-								pHitPoints));
-							$('#AiLog').html(
-								"<p style = 'color: red'>Computer Attacked Player!</p>"
-							);
-							turn = turn + 1;
-							$('#Turn').html(turn);
-						} else if (computerChoice <= 0.67) {
-							var dmg = cBaseMult * cAtk2 * (1 - (pMit /
-								100));
-							pHitPoints = pHitPoints - dmg;
-							$('#pHitPoints').html(Math.round(
-								pHitPoints));
-							$('#AiLog').html(
-								"<p style = 'color: red;'>Computer Attacked Player!</p>"
-							);
-							turn = turn + 1;
-							$('#Turn').html(turn);
-						} else {
-							cDefPoints = cDefPoints + power;
-							cMit = Math.log(cDefPoints) / Math.log(
-								1.1);
-							$('#cDefPoints').html(Math.round(
-								cDefPoints));
-							$('#cMit').html(Math.round(cMit));
-							$('#AiLog').html(
-								"<p style = 'color: green;'>Computer increased defense</p>"
-							);
-							turn = turn + 1;
-							$('#Turn').html(turn);
-						}
-						if (pHitPoints < 1) {
-							pHitPoints = 'Dead';
-							$('#pHitPoints').html(pHitPoints);
-						}
-					}
-				}, delay);
+				computerMove(1);
 			}
 		} else {
 			$('#PlayerLog').html("<p>It is not your turn</p>");
@@ -269,7 +244,9 @@ pDef = function foo(power) {
 	if (pHitPoints < 1) {
 		pHitPoints = 'Dead';
 		$('#pHitPoints').html(pHitPoints);
-	} else {
+	} else if (pHitPoints === 'Dead'){
+    $('#PlayerLog').html('<p>You are dead...</p>');
+  } else {
 		if ((turn % 2) === 1) {
 			pDefPoints = pDefPoints + power;
 			pMit = Math.log(pDefPoints) / Math.log(1.1);
@@ -278,50 +255,12 @@ pDef = function foo(power) {
 			$('#PlayerLog').html(
 				"<p style = 'color: green;'>Player increased defense</p>"
 			);
+      $('#allLog').prepend(
+        "<p style = 'color: Green;'>P: Increased Defense by " + Math.round(pDefPlus) + "</p>" 
+			);
 			turn = turn + 1;
 			$('#Turn').html(turn);
-			$('#AiLog').html(
-				"<p style = 'color: blue;'>Computer is choosing a Move</p>"
-			);
-			var delay = 2500; //2.5 seconds
-			setTimeout(function() {
-				if ((turn % 2) === 0) {
-					var computerChoice = Math.random();
-					if (computerChoice < 0.34) {
-						var dmg = cBaseMult * power * (1 - (pMit /
-							100));
-						pHitPoints = pHitPoints - dmg;
-						$('#pHitPoints').html(Math.round(pHitPoints));
-						$('#AiLog').html(
-							"<p style = 'color: red;'>Computer Attacked Player!</p>"
-						);
-						turn = turn + 1;
-						$('#Turn').html(turn);
-					} else if (computerChoice <= 0.67) {
-						var dmg = cBaseMult * power * (1 - (pMit /
-							100));
-						pHitPoints = pHitPoints - dmg;
-						$('#pHitPoints').html(Math.round(pHitPoints));
-						$('#AiLog').html(
-							"<p style = 'color: red;'>Computer Attacked Player!</p>"
-						);
-						turn = turn + 1;
-						$('#Turn').html(turn);
-					} else {
-						cDefPoints = cDefPoints + power;
-						cMit = Math.log(cDefPoints) / Math.log(1.1);
-						$('#cDefPoints').html(Math.round(cDefPoints));
-						$('#cMit').html(Math.round(cMit));
-						$('#AiLog').html(
-							"<p style = 'color: green;'>Computer increased defense</p>"
-						);
-						turn = turn + 1;
-						$('#Turn').html(turn);
-					}
-				} else {
-					$('#AiLog').html("<p>Waiting...</p>");
-				}
-			}, delay);
+			computerMove(1);
 		} else {
 			$('#PlayerLog').html("<p>It is not your turn</p>");
 		}

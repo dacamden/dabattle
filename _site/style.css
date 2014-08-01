@@ -17,6 +17,17 @@
     -moz-box-shadow:4px 4px 10px rgba(0,0,0,0.4);
     box-shadow:4px 4px 10px rgba(0,0,0,0.4)
 }
+.playerhealth {
+    float:left;
+    display: inline-block;
+    padding:0.5%;
+}
+
+.computerhealth {
+    float:right;
+    display: inline-block;
+    padding:0.5%;
+}
 
 #AiCard {
     float:right;

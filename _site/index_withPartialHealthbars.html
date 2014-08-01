@@ -9,6 +9,37 @@
 </head>
 
 <body>
+
+<!-- healthBars-->
+<meter id="phealthBar" class='playerhealth' value="0" max="100" style="width:300px;"></meter>
+<span id="pstatus" class='playerhealth'></span>
+<progress id="chealthBar" class='computerhealth' value="0" max="100" style="width:300px;"></progress>
+<span id="cstatus" class='computerhealth'></span>
+
+<script type="text/javascript" language="javascript">
+// player healthBar
+function phealthBarSim(al) {
+  var bar = document.getElementById('phealthBar');
+  var status = document.getElementById('pstatus');
+  status.innerHTML = al+"%";
+  bar.value = al;
+}
+var amountLoaded = pHitPoints;
+phealthBarSim(amountLoaded);
+
+// computer healthBar
+function chealthBarSim(al) {
+  var bar = document.getElementById('chealthBar');
+  var status = document.getElementById('cstatus');
+  status.innerHTML = al+"%";
+  bar.value = al;
+}
+var amountLoaded = cHitPoints;
+chealthBarSim(amountLoaded);
+
+</script>
+<!-- healthBars-->
+
 	<div id="container">
 		<div id="PlayerCard">
 			<p>HP: <span id="pHitPoints"></span></p>
